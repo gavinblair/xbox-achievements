@@ -4,7 +4,7 @@ include('includes/kernel.php');
 
 //online friends that have achievements that you don't have
 
-$api->output_headers();
+// $api->output_headers();
 $gamertag = (isset($_GET['gamertag']) && !empty($_GET['gamertag'])) ? trim($_GET['gamertag']) : null;
 $gameid = (isset($_GET['gameid']) && !empty($_GET['gameid'])) ? trim($_GET['gameid']) : null;
 $region   = (isset($_GET['region']) && !empty($_GET['region'])) ? $_GET['region'] : 'en-US';
@@ -42,9 +42,9 @@ if (!$api->logged_in) {
 				//this friend has this game!
 				//get friend's achievements for this game
 				$achievements = $api->fetch_achievements($friend['gamertag'], $gameid, $region);
+				$achievements = isset($achievements['achievements']) ? $achievements['achievements'] : false;
 				if($achievements){
-					$achievements = isset($achievements['achievements']) ? $achievements['achievements'] : false;
-					
+
 					foreach($achievements as $achievement){
 						if($achievement['unlocked'] == "true"){
 							$found = false;
@@ -56,6 +56,7 @@ if (!$api->logged_in) {
 							}
 							if($found == false){
 								//we don't have this achievement.
+								$wishyouhad[$achievement['title']]['title'] = $achievement['title'];
 								$wishyouhad[$achievement['title']]['description'] = $achievement['description'];
 								$wishyouhad[$achievement['title']]['artwork'] = $achievement['artwork']['locked'];
 								$wishyouhad[$achievement['title']]['friends'][] = $friend;
@@ -69,9 +70,19 @@ if (!$api->logged_in) {
 		}
         
         if ($wishyouhad) {
-            echo $api->output_payload($wishyouhad);
+        	//sort by popularity	
+			usort($wishyouhad, "pop_sort");
+        	include 'output.php';
+            // echo $api->output_payload($wishyouhad);
         } else {
             echo $api->output_error($api->error);
         }
     }
+}
+
+function pop_sort($a, $b){
+    if (count($a['friends']) == count($b['friends'])){
+        return 0;
+    }
+    return (count($b['friends']) < count($a['friends'])) ? -1 : 1;
 }

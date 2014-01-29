@@ -28,7 +28,8 @@ if (!$api->logged_in) {
     } else {
         $data = $api->fetch_games($gamertag, $region);
         if ($data) {
-            echo $api->output_payload($data);
+            //echo $api->output_payload($data);
+            echo json_encode($data);
         } else {
             echo $api->output_error($api->error);
         }
