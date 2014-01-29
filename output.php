@@ -9,8 +9,8 @@
 <?php foreach($wishyouhad as $trophy): ?>
     <section>
         <h2><img src="<?=$trophy['artwork']?>"><?=$trophy['title']?></h2>
-        <p><?=$trophy['description']?></p>
-        <p><?=count($trophy['friends'])?> online friends have this trophy. You do not.</p>
+        <p class='desc'><?=$trophy['description']?></p>
+        <p><?=count($trophy['friends'])?> online friend<?php echo count($trophy['friends']) > 1 ? 's' : ''; ?> ha<?php echo count($trophy['friends']) > 1 ? 've' : 's'; ?> this trophy. You do not.</p>
         <ul>
             <?php foreach($trophy['friends'] as $friend): ?>
             <li><img src="<?=$friend['gamerpic']['large']?>"><?=$friend['gamertag']?></li>

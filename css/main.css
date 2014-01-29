@@ -111,7 +111,7 @@ body {
   font-family: 'Lato', sans-serif;
 }
 h1 {
-  color: #23364B;
+  color: #fff;
 }
 .page {
   display: none;
@@ -168,14 +168,49 @@ input:focus, input:active { outline: none; }
 #results p {
   color: #fff;
 }
-#back {
+#back, #startover {
   cursor: pointer;
   color: #fff;
 }
-
-
-
-
+h2 {
+  background: #23364B;
+  color: #ddd;
+  font-size: 14px;
+  vertical-align: middle;
+  border-bottom: 1px solid #365670;
+}
+h2 img {
+  padding-right: 1em;
+}
+section{
+  background: #23364B;
+  border-bottom: 1px solid #365670;
+  margin-bottom: -12px;
+}
+section p {
+  padding: 1em;
+  margin: 0;
+}
+ul {
+  list-style: none;
+  }
+li img {
+  padding-right: 1em;
+}
+li {
+  margin-bottom: .5em;
+}
+ul {
+  padding-bottom: 2em;
+}
+#results section p.desc {
+  color: #b3d4fc;
+  font-size: 11px;
+}
+#results .loading p {
+  color: #b3d4fc;
+  font-size: 11px;
+}
 
 
 
