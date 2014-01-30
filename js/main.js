@@ -66,7 +66,7 @@ function getresults(gameid, gamertag, gamename){
 		},
 		error: function(){
 			$('#results .loading').hide();
-			$('#results').append('<div id="wishyouhad">Something bad happened. It\'s probably you\'re fault.</div>');
+			$('#results').append('<div id="wishyouhad">Something bad happened. It\'s probably your fault.</div>');
 		}
 	});
 }
